@@ -1,0 +1,335 @@
+.crypto-table-container {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 30px;
+}
+
+.table-filters {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.table-search {
+  position: relative;
+  width: 250px;
+}
+
+.table-search input {
+  padding: 8px 16px 8px 40px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.table-search i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5e667e;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.crypto-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.crypto-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #5e667e;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.crypto-table th:hover {
+  color: #3861fb;
+}
+
+.crypto-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.coin-row:hover {
+  background-color: #f8fafd;
+}
+
+.coin-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.coin-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.coin-symbol {
+  font-weight: 600;
+  color: #0c0f48;
+}
+
+.coin-fullname {
+  font-size: 14px;
+  color: #5e667e;
+}
+
+.buy-button {
+  background: #f8fafd;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #3861fb;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: all 0.2s;
+}
+
+.buy-button:hover {
+  background: #3861fb;
+  color: white;
+}
+
+.price {
+  font-weight: 600;
+  color: #0c0f48;
+}
+
+.positive {
+  color: #16c784;
+  font-weight: 500;
+}
+
+.negative {
+  color: #ea3943;
+  font-weight: 500;
+}
+
+.sparkline {
+  width: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.sparkline img {
+  width: 100%;
+  height: 30px;
+  object-fit: contain;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #5e667e;
+}
+
+.table-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination-controls button {
+  padding: 6px 12px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #5e667e;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  border-color: #3861fb;
+  color: #3861fb;
+}
+
+.pagination-controls button:disabled {
+  background: #3861fb;
+  color: white;
+  border-color: #3861fb;
+}
+
+.pagination-controls span {
+  color: #5e667e;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .table-search {
+    width: 100%;
+  }
+  
+  .crypto-table th,
+  .crypto-table td {
+    padding: 8px 12px;
+  }
+  
+  .sparkline {
+    display: none;
+  }
+  
+  .table-pagination {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+}
+
+.table-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.rows-per-page {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6c757d;
+}
+
+.rows-per-page select {
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.coin-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.coin-row:hover {
+  background-color: #f8f9fa;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+}
+
+.empty-state i {
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #dee2e6;
+}
+
+.empty-state button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #3861fb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.empty-state button:hover {
+  background-color: #2a4fd8;
+}
+
+.table-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 15px 0;
+  border-top: 1px solid #dee2e6;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pagination-controls button {
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 40px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #f8f9fa;
+}
+
+.pagination-controls button.active {
+  background-color: #3861fb;
+  color: white;
+  border-color: #3861fb;
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+  padding: 8px 5px;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .table-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .rows-per-page {
+    justify-content: center;
+  }
+  
+  .table-pagination {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pagination-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.buy-button {
+  position: relative;
+  z-index: 2;
+}

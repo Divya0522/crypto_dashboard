@@ -1,0 +1,11 @@
+
+.sparkline-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-data {
+  font-size: 10px;
+  color: #5e667e;
+}

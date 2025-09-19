@@ -1,0 +1,78 @@
+.top-gainers {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.gainer-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f8fafd;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s;
+}
+
+.gainer-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.gainer-rank {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #3861fb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.gainer-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.gainer-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.gainer-name {
+  font-weight: 600;
+  color: #0c0f48;
+  font-size: 16px;
+}
+
+.gainer-symbol {
+  font-size: 14px;
+  color: #5e667e;
+}
+
+.gainer-change {
+  font-weight: 600;
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(22, 199, 132, 0.1);
+}
+
+@media (max-width: 480px) {
+  .gainer-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .gainer-info {
+    flex-direction: column;
+  }
+}
