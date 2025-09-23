@@ -9,7 +9,6 @@ const CryptoTable = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [sortConfig, setSortConfig] = useState({ key: 'market_cap_rank', direction: 'asc' });
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -37,48 +36,20 @@ const CryptoTable = () => {
     fetchCoins();
   }, [currentPage]);
 
-  const handleSort = (key) => {
-    let direction = 'asc';
-    if (sortConfig.key === key && sortConfig.direction === 'asc') {
-      direction = 'desc';
-    }
-    setSortConfig({ key, direction });
-  };
-
   const handleSearch = (query) => {
     setSearchQuery(query);
     setCurrentPage(1); 
   };
 
-  const filteredAndSortedCoins = React.useMemo(() => {
-    let filtered = coins;
-    
+  const filteredCoins = React.useMemo(() => {
     if (searchQuery) {
-      filtered = coins.filter(coin => 
+      return coins.filter(coin => 
         coin.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
         coin.symbol.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-    
-    if (sortConfig.key) {
-      filtered = [...filtered].sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === 'asc' ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === 'asc' ? 1 : -1;
-        }
-        return 0;
-      });
-    }
-    
-    return filtered;
-  }, [coins, searchQuery, sortConfig]);
-
-  const SortIndicator = ({ columnKey }) => {
-    if (sortConfig.key !== columnKey) return null;
-    return sortConfig.direction === 'asc' ? ' ↑' : ' ↓';
-  };
+    return coins;
+  }, [coins, searchQuery]);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -174,19 +145,19 @@ const CryptoTable = () => {
         <table className="crypto-table">
           <thead>
             <tr>
-              <th onClick={() => handleSort('market_cap_rank')}># {<SortIndicator columnKey="market_cap_rank" />}</th>
-              <th onClick={() => handleSort('name')}>Coin {<SortIndicator columnKey="name" />}</th>
-              <th onClick={() => handleSort('current_price')}>Price {<SortIndicator columnKey="current_price" />}</th>
-              <th onClick={() => handleSort('price_change_percentage_1h_in_currency')}>1h {<SortIndicator columnKey="price_change_percentage_1h_in_currency" />}</th>
-              <th onClick={() => handleSort('price_change_percentage_24h')}>24h {<SortIndicator columnKey="price_change_percentage_24h" />}</th>
-              <th onClick={() => handleSort('price_change_percentage_7d_in_currency')}>7d {<SortIndicator columnKey="price_change_percentage_7d_in_currency" />}</th>
-              <th onClick={() => handleSort('total_volume')}>24h Volume {<SortIndicator columnKey="total_volume" />}</th>
-              <th onClick={() => handleSort('market_cap')}>Market Cap {<SortIndicator columnKey="market_cap" />}</th>
+              <th>#</th>
+              <th>Coin</th>
+              <th>Price</th>
+              <th>1h</th>
+              <th>24h</th>
+              <th>7d</th>
+              <th>24h Volume</th>
+              <th>Market Cap</th>
               <th>Last 7 Days</th>
             </tr>
           </thead>
           <tbody>
-            {!loading && filteredAndSortedCoins.map(coin => (
+            {!loading && filteredCoins.map(coin => (
               <tr key={coin.id} className="coin-row">
                 <td>{coin.market_cap_rank}</td>
                 <td className="coin-name">
@@ -219,16 +190,16 @@ const CryptoTable = () => {
         
         {loading && <LoadingSkeleton type="table" />}
         
-        {!loading && filteredAndSortedCoins.length === 0 && (
+        {!loading && filteredCoins.length === 0 && (
           <div className="empty-state">
             <p>No coins found matching your search.</p>
           </div>
         )}
       </div>
 
-      {!loading && filteredAndSortedCoins.length > 0 && (
+      {!loading && filteredCoins.length > 0 && (
         <div className="table-pagination">
-          <span>Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredAndSortedCoins.length)} of ~10,000 results</span>
+          <span>Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredCoins.length)} of ~10,000 results</span>
           {renderPagination()}
         </div>
       )}
